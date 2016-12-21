@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Install depenancies
-apt-get1 install -y git cifs-utils build-essential
+apt-get install -y git cifs-utils build-essential
 
 #Install Go -- used to compile the driver
 wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz

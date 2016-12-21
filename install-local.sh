@@ -1,16 +1,17 @@
 #!/bin/bash
 
 #The name of the Azure Storage Account
-AZURE_ACCOUNT="yourstorageaccount"
+AZURE_ACCOUNT="acsazstore"
 
 #A Key from the Azure Storage Account
-AZURE_KEY="youraccountkey"
+AZURE_KEY="u2g9p1yvuaDlkTUo9A+znmDw/WT7V5BVbEdOeGwyAtJfjv4DdSonTRjYwg5wq8Ye+YrJfKyzvROCtfXYypR/6Q=="
 
 
 #Install depenancies
-apt-get1 install -y cifs-utils
+apt-get install -y cifs-utils
 
 #Copy and create config files to the folders on the agent
+mv azurefile /usr/bin/azurefile
 cp azurefile.conf /etc/init/azurefile.conf
 touch /etc/default/azurefile
 echo "AZURE_STORAGE_BASE=core.windows.net" >> /etc/default/azurefile
