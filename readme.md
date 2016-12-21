@@ -17,7 +17,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 1. Connect to the Swarm Master. [Follow the instructions here if you don't already know how](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect).
 
-1. Copy your SSH private key to the master node. This is private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master can connect to the Agents with SSH and run scripts.
+1. Copy your SSH private key to the master node. This is the private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master can connect to the Agents with SSH and run scripts.
 
 	**Mac and Linux**: 
 
