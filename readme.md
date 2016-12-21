@@ -33,7 +33,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	Open **Puttygen** and load the .ppk used to generate the public key when you created your instance of Azure Container Services. 
 
-	On the **Conversion** menu, select **Export Open SSH Key**, and save the key without a password as **id_rsa**
+	On the **Conversion** menu, select **Export Open SSH Key**, and save the key without a password as **id_rsa**.
 
 	Use the **PSCP** utility that came with Putty to copy the **id_rsa** file to the master node. The user is the admin user specified when the cluster was created and the master DNS is the FQDN of the master node.
 
