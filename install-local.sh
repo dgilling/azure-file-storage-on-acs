@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #The name of the Azure Storage Account
-AZURE_ACCOUNT="acsazstore"
+AZURE_ACCOUNT="youraccountname"
 
 #A Key from the Azure Storage Account
-AZURE_KEY="u2g9p1yvuaDlkTUo9A+znmDw/WT7V5BVbEdOeGwyAtJfjv4DdSonTRjYwg5wq8Ye+YrJfKyzvROCtfXYypR/6Q=="
+AZURE_KEY="yourkey"
 
 
 #Install depenancies
