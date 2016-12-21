@@ -72,22 +72,28 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	cd ~
 	````
 
-1. Download the scripts.
+1. Download the scripts zip file.
 
 	````
 	wget https://github.com/theonemule/azure-file-storage-on-acs/archive/master.zip
 	````
 
-1. Unzip the files.
+1. Unzip the scripts zip file.
 
 	````
 	unzip master.zip
 	````
 
-1. CD to scripts.
+1. CD to scripts directory.
 
 	````
 	 cd azure-file-storage-on-acs-master
+	````
+	
+1. Build the driver from the source. This script will install the build tools need to build the binary then build it.
+
+	````
+	sudo sh build.sh
 	````
 
 1. Edit install-local.sh
@@ -101,7 +107,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 1. Save the file by pressing Ctrl+O and exit nano with Ctrl+X
 
-1. Run the **install-agent.sh** script. This script detects the nodes on the cluster, uploads the built binary, config file, and install script to each cluster, then installs the driver on each node. This script does not use nano.
+1. Run the **install-agent.sh** script. This script detects the nodes on the cluster, uploads the built binary, a config file, and install-local.sh script to each cluster. Ater uploading, it incokes the install script to install the driver on each node. This script does NOT use nano.
 
 	````
 	sh install-agents.sh
