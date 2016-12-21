@@ -8,7 +8,7 @@ AZURE_KEY="youraccountkey"
 
 
 #Install depenancies
-apt-get1 install -y cifs-utils
+apt-get install -y cifs-utils
 
 #Copy and create config files to the folders on the agent
 cp azurefile.conf /etc/init/azurefile.conf
