@@ -1,7 +1,7 @@
-Installing Azure File Storage Driver on Azure Container Services
+Installing Docker Volume Driver for Azure File Storage on Azure Container Services
 ====
 
-If you're reading this, it's probably because you are looking for a way fo get an Azure Storage Accont connected to Azure Container Services for persistent storage. One would think that Azure Container Services would have the ability to use Azure Storage for persistent storage for Docker Volumes. Out of the box, Azure Container Services with Swarm does not include this, rather it only includes the default drivers that are installed with Docker. To access Azure Storage with Azure Container Services, the driver has to be installed manually on each of the Swarm nodes (agent VM's) on the Swarm cluster. These scripts are useful for installing the driver on all the agents in Docker Swarm configuraiton on Azure Container Service.
+If you're reading this, it's probably because you are looking for a way fo get an Azure Storage Account connected to Azure Container Services for persistent storage. One would think that Azure Container Services would have the ability to use Azure Storage for persistent storage for Docker Volumes. Out of the box, Azure Container Services does not come with the [Docker Volume Driver for Azure File Storage](https://github.com/Azure/azurefile-dockervolumedriver), rather it only includes the default drivers that are installed with Docker. To access Azure Storage with Azure Container Services, the driver has to be installed manually on each of the Swarm nodes (agent VM's) on the Swarm cluster. These scripts are useful for installing the driver on all the agents in Docker Swarm configuraiton on Azure Container Service.
 
 One caveat though: if number of of nodes is ever scaled up, you'll need to rerun the scripts to install the drivers on the new nodes that Azure creates.
 
