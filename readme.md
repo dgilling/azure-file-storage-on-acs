@@ -1,7 +1,7 @@
 Installing Docker Volume Driver for Azure File Storage on Azure Container Services
 ====
 
-If you're reading this, it's probably because you are looking for a way fo get an Azure Storage Account connected to Azure Container Services for persistent storage. One would think that Azure Container Services would have the ability to use Azure Storage for persistent storage for Docker Volumes. Out of the box, Azure Container Services does not come with the [Docker Volume Driver for Azure File Storage](https://github.com/Azure/azurefile-dockervolumedriver), rather it only includes the default drivers that are installed with Docker. To access Azure Storage with Azure Container Services, the driver has to be installed manually on each of the Swarm nodes (agent VM's) on the Swarm cluster. These scripts are useful for installing the driver on all the agents in Docker Swarm configuraiton on Azure Container Service.
+If you're reading this, it's probably because you are looking for a way for get an Azure Storage Account connected to Azure Container Services for persistent storage. One would think that Azure Container Services would have the ability to use Azure Storage for persistent storage for Docker Volumes. Out of the box, Azure Container Services does not come with the [Docker Volume Driver for Azure File Storage](https://github.com/Azure/azurefile-dockervolumedriver), rather it only includes the default drivers that are installed with Docker. To access Azure Storage with Azure Container Services, the driver has to be installed manually on each of the Swarm nodes (agent VM's) on the Swarm cluster. These scripts are useful for installing the driver on all the agents in Docker Swarm configuration on Azure Container Service.
 
 One caveat though: if number of of nodes is ever scaled up, you'll need to rerun the scripts to install the drivers on the new nodes that Azure creates.
 
@@ -41,7 +41,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	\path\to\pscp.exe -i \path\to\key.ppk \path\to\id_rsa user@masterdns:.ssh
 	````
 
-	*Example*: This example placed the id_rsa in the same folder with the .ppk that was used to generate the id_rsa file. The exmaple assumes the user changed directory to the path of these files (ie. cd \path\to\files).
+	*Example*: This example placed the id_rsa in the same folder with the .ppk that was used to generate the id_rsa file. The example assumes the user changed directory to the path of these files (ie. cd \path\to\files).
 
 	````
 	C:\Users\blaize\Downloads\putty\pscp -i private.ppk id_rsa blaize@acsstoragedemomgmt.southcentralus.cloudapp.azure.com:.ssh
@@ -102,11 +102,11 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	````
 
 	* Replace "yourstorageaccount" with the name of your storage account. Leave the quoatation marks.
-	* Replace "yourkey" with the key from your storage account. Leave the quoatation marks.
+	* Replace "yourkey" with the key from your storage account. Leave the quotation marks.
 
 1. Save the file by pressing Ctrl+O and exit nano with Ctrl+X
 
-1. Run the **install-agent.sh** script. This script detects the nodes on the cluster, uploads the built binary, a config file, and install-local.sh script to each cluster. Ater uploading, it incokes the install script to install the driver on each node. This script does NOT use nano.
+1. Run the **install-agent.sh** script. This script detects the nodes on the cluster, uploads the built binary, a config file, and install-local.sh script to each cluster. After uploading, it invokes the install script to install the driver on each node. This script does NOT use nano.
 
 	````
 	sh install-agents.sh
@@ -121,8 +121,4 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	* -H specifies the local port that is forwarded to the master node by SSH.
 	* -d specifies the driver
 	* -o share sets the option of the share name. This is the share that is created in the Azure Storage Account
-	* --name sets the name of the volume. The volume can then be mounted inside containers using the -v parameter whem the docker run command is executed.
-
-
-
-
+	* --name sets the name of the volume. The volume can then be mounted inside containers using the -v parameter when the docker run command is executed.
