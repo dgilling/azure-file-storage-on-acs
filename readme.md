@@ -30,7 +30,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	Replace **masterdns** with the same Master FQDN that was used to connect to the master node with SSH and replace the **user** with the admin user specified when the  cluster was created.
 
-	**Windows**
+	**Windows**:
 
 	Open **Puttygen** and load the .ppk used to generate the public key when you created your instance of Azure Container Services. 
 
