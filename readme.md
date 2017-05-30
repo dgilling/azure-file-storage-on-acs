@@ -121,9 +121,11 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	sh install-agents-kubernetes.sh
 	````
 
-1. Test the install. On the client machine, use the docker client to create a volume.
+1. Test the install.
 
 	**Swarm:**
+
+	On the client machine, use the docker client to create a volume.
 
 	````
 	docker -H 127.0.0.1:22375 volume create -d azurefile -o share=myvol --name vol1
@@ -135,24 +137,4 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	**Kubernetes:**
 
-	Use kubectl to mount a volume using:
-
-	````
-	apiVersion: v1
-	kind: Pod
-	metadata:
-	 name: azure
-	spec:
-	 containers:
-	  - image: kubernetes/pause
-	    name: azure
-	    volumeMounts:
-	      - name: azure
-	        mountPath: /mnt/azure
-	 volumes:
-	      - name: azure
-	        azureFile:
-	          secretName: azure-secret
-	          shareName: k8stest
-	          readOnly: false
-	````
+	Follow the instructions here: https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/azure_file ignoring the installation of cifs-utils to test.
