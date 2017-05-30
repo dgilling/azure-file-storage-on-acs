@@ -129,6 +129,30 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	docker -H 127.0.0.1:22375 volume create -d azurefile -o share=myvol --name vol1
 	````
 
+	**Kubernetes:**
+
+	Use kubectl to mount a volume using:
+
+	````
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	 name: azure
+	spec:
+	 containers:
+	  - image: kubernetes/pause
+	    name: azure
+	    volumeMounts:
+	      - name: azure
+	        mountPath: /mnt/azure
+	 volumes:
+	      - name: azure
+	        azureFile:
+	          secretName: azure-secret
+	          shareName: k8stest
+	          readOnly: false
+	````
+
 	* -H specifies the local port that is forwarded to the master node by SSH.
 	* -d specifies the driver
 	* -o share sets the option of the share name. This is the share that is created in the Azure Storage Account
