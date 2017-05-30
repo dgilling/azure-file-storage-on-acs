@@ -8,16 +8,16 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 ##Prerequisites
 
 * An Azure Storage Account -- For best results, create the storage account in the same region as the container services. This will guarantee  the best possible speeds between the agents and the Azure Storage File Shares.
-* Azure Container Services setup with Swarm Orchestration. These scripts assume Swarm or Kubernetes Orchestration and have not been tested on DC/OS. For Kubernetes instructions see below:
+* Azure Container Services setup with Swarm or Kubernetes Orchestration. These scripts assume Swarm or Kubernetes Orchestration and have not been tested on DC/OS. For Kubernetes instructions see below:
 * An SSH client. This is built into MacOS and Linux. If you don't already have it, get [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * An SCP client. This is built into MacOS and Linux. Get [PSCP](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * [PuttyGen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows
 
 ##Usage
 
-1. Connect to the Swarm Master. [Follow the instructions here if you don't already know how](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect).
+1. Connect to the Swarm Master / Master Node. [Follow the instructions here if you don't already know how](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect).
 
-1. Copy your SSH private key to the master node. This is the private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master can connect to the Agents with SSH and run scripts.
+1. Copy your SSH private key to the master node. This is the private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master / Master Node can connect to the Agents with SSH and run scripts.
 
 	**Mac and Linux**:
 
@@ -47,7 +47,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	C:\Users\blaize\Downloads\putty\pscp -i private.ppk id_rsa blaize@acsstoragedemomgmt.southcentralus.cloudapp.azure.com:.ssh
 	````
 
-1. On the Swarm Master, change directories to the SSH folder.
+1. On the Swarm Master / Master Node, change directories to the SSH folder.
 
 	````
 	cd ~/.ssh
