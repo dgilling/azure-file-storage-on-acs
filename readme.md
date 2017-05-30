@@ -137,4 +137,4 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	**Kubernetes:**
 
-	Follow the instructions here: https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/azure_file ignoring the installation of cifs-utils to test.
+	Follow the instructions here: https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/azure_file ignoring the installation of cifs-utils.
