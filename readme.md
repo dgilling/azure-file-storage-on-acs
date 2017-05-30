@@ -8,18 +8,18 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 ##Prerequisites
 
 * An Azure Storage Account -- For best results, create the storage account in the same region as the container services. This will guarantee  the best possible speeds between the agents and the Azure Storage File Shares.
-* Azure Container Services setup with Swarm Orchestration. These scripts assume Swarm Orchestration and have not been tested on Kubernetes or DC/OS.
+* Azure Container Services setup with Swarm or Kubernetes Orchestration. These scripts assume Swarm or Kubernetes Orchestration and have not been tested on DC/OS. For Kubernetes instructions see below:
 * An SSH client. This is built into MacOS and Linux. If you don't already have it, get [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * An SCP client. This is built into MacOS and Linux. Get [PSCP](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * [PuttyGen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows
 
 ##Usage
 
-1. Connect to the Swarm Master. [Follow the instructions here if you don't already know how](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect).
+1. Connect to the Swarm Master / Master Node. [Follow the instructions here if you don't already know how](https://docs.microsoft.com/en-us/azure/container-service/container-service-connect).
 
-1. Copy your SSH private key to the master node. This is the private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master can connect to the Agents with SSH and run scripts.
+1. Copy your SSH private key to the master node. This is the private key that was used to generate the public key that was provided to Azure when the instance of Azure Container Services was created. Odds are, you either used ssh-keygen on Mac or Linux or PuttyGen on Windows. The private key is needed to so that the Swarm Master / Master Node can connect to the Agents with SSH and run scripts.
 
-	**Mac and Linux**: 
+	**Mac and Linux**:
 
 	Copying the key from a Mac or Linux box is a simple command:
 
@@ -31,7 +31,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	**Windows**:
 
-	Open **Puttygen** and load the .ppk used to generate the public key when you created your instance of Azure Container Services. 
+	Open **Puttygen** and load the .ppk used to generate the public key when you created your instance of Azure Container Services.
 
 	On the **Conversion** menu, select **Export Open SSH Key**, and save the key without a password as **id_rsa**.
 
@@ -47,7 +47,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	C:\Users\blaize\Downloads\putty\pscp -i private.ppk id_rsa blaize@acsstoragedemomgmt.southcentralus.cloudapp.azure.com:.ssh
 	````
 
-1. On the Swarm Master, change directories to the SSH folder.
+1. On the Swarm Master / Master Node, change directories to the SSH folder.
 
 	````
 	cd ~/.ssh
@@ -88,14 +88,22 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	````
 	 cd azure-file-storage-on-acs-master
 	````
-	
+
 1. Build the driver from the source. This script will install the build tools need to build the binary then build it.
+
+	**Swarm**:
 
 	````
 	sudo sh build.sh
 	````
 
+	**Kubernetes**:
+
+	This step is not required for Kubernetes
+
 1. Edit install-local.sh
+
+	**Swarm**:
 
 	````
 	nano install-local.sh
@@ -104,21 +112,41 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	* Replace "yourstorageaccount" with the name of your storage account. Leave the quoatation marks.
 	* Replace "yourkey" with the key from your storage account. Leave the quotation marks.
 
+	**Kubernetes**:
+
+	This step is not required for Kubernetes as your azure storage info should be stored in a Kubernetes secret.
+
 1. Save the file by pressing Ctrl+O and exit nano with Ctrl+X
 
 1. Run the **install-agent.sh** script. This script detects the nodes on the cluster, uploads the built binary, a config file, and install-local.sh script to each cluster. After uploading, it invokes the install script to install the driver on each node. This script does NOT use nano.
+
+
+	**Swarm**:
 
 	````
 	sh install-agents.sh
 	````
 
-1. Test the install. On the client machine, use the docker client to create a volume.
+	**Kubernetes**:
+
+	````
+	sh install-agents-kubernetes.sh
+	````
+
+1. Test the install.
+
+	**Swarm:**
+
+	On the client machine, use the docker client to create a volume.
 
 	````
 	docker -H 127.0.0.1:22375 volume create -d azurefile -o share=myvol --name vol1
 	````
-
 	* -H specifies the local port that is forwarded to the master node by SSH.
 	* -d specifies the driver
 	* -o share sets the option of the share name. This is the share that is created in the Azure Storage Account
 	* --name sets the name of the volume. The volume can then be mounted inside containers using the -v parameter when the docker run command is executed.
+
+	**Kubernetes:**
+
+	Follow the instructions here: https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/azure_file ignoring the installation of cifs-utils.
