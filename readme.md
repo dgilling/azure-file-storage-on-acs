@@ -8,7 +8,7 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 ##Prerequisites
 
 * An Azure Storage Account -- For best results, create the storage account in the same region as the container services. This will guarantee  the best possible speeds between the agents and the Azure Storage File Shares.
-* Azure Container Services setup with Swarm Orchestration. These scripts assume Swarm Orchestration and have not been tested on DC/OS. For Kubernetes instructions see below:
+* Azure Container Services setup with Swarm Orchestration. These scripts assume Swarm or Kubernetes Orchestration and have not been tested on DC/OS. For Kubernetes instructions see below:
 * An SSH client. This is built into MacOS and Linux. If you don't already have it, get [Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * An SCP client. This is built into MacOS and Linux. Get [PSCP](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows.
 * [PuttyGen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) for Windows
