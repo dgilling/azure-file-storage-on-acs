@@ -128,6 +128,10 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	````
 	docker -H 127.0.0.1:22375 volume create -d azurefile -o share=myvol --name vol1
 	````
+	* -H specifies the local port that is forwarded to the master node by SSH.
+	* -d specifies the driver
+	* -o share sets the option of the share name. This is the share that is created in the Azure Storage Account
+	* --name sets the name of the volume. The volume can then be mounted inside containers using the -v parameter when the docker run command is executed.
 
 	**Kubernetes:**
 
@@ -152,8 +156,3 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 	          shareName: k8stest
 	          readOnly: false
 	````
-
-	* -H specifies the local port that is forwarded to the master node by SSH.
-	* -d specifies the driver
-	* -o share sets the option of the share name. This is the share that is created in the Azure Storage Account
-	* --name sets the name of the volume. The volume can then be mounted inside containers using the -v parameter when the docker run command is executed.
