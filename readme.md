@@ -91,11 +91,19 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 1. Build the driver from the source. This script will install the build tools need to build the binary then build it.
 
+	**Swarm**:
+
 	````
 	sudo sh build.sh
 	````
 
+	**Kubernetes**:
+
+	This step is not required for Kubernetes
+
 1. Edit install-local.sh
+
+	**Swarm**:
 
 	````
 	nano install-local.sh
@@ -103,6 +111,10 @@ One caveat though: if number of of nodes is ever scaled up, you'll need to rerun
 
 	* Replace "yourstorageaccount" with the name of your storage account. Leave the quoatation marks.
 	* Replace "yourkey" with the key from your storage account. Leave the quotation marks.
+
+	**Kubernetes**:
+
+	This step is not required for Kubernetes as your azure storage info should be stored in a Kubernetes secret.
 
 1. Save the file by pressing Ctrl+O and exit nano with Ctrl+X
 
